@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ValuesClient } from './clients/values-client';
+import { ValuesClient, MessageClient } from './clients/values-client';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import { ValuesClient } from './clients/values-client';
     HttpClientModule
   ],
   providers: [
-    ValuesClient
+    ValuesClient,
+    MessageClient
   ],
   bootstrap: [AppComponent]
 })

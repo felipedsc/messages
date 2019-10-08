@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ValuesClient } from './clients/values-client';
+import { ValuesClient, MessageClient, IMessageDto, MessageDto } from './clients/values-client';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -8,14 +8,21 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  value = 'initial value';
-  constructor(private valuesClient: ValuesClient) {
+  sent = false;
+  constructor(private messageClient: MessageClient) {
 
   }
 
-  testApi() {
-    this.valuesClient.getAll()
+  send(message: string) {
+    this.sent = false;
+
+    this.messageClient.send(<MessageDto>{ message })
       .pipe(take(1))
-      .subscribe(response => this.value = response.join(', '));
+      .subscribe(response => {
+        debugger;
+        this.sent = response;
+      }, error => {
+        debugger;
+      });
   }
 }
